@@ -2210,6 +2210,208 @@ for index, product in enumerate(products.items(), 1):
 
 
 }
-{}
+
+
+
+
+{
+
+
+Date - 4/26/2026
+================
+
+What are Sets, and How Do They Work? (Working with Dictionaries and Sets)
+------------------------------------
+
+Sets are one of Python's built-in data structures. One of the core characteristics of sets is that they don't store duplicate values. If you try to add a duplicate value to a set, only one of them will be stored.
+
+Sets are mutable and unordered, which means that their elements are not stored in any specific order, so you cannot use indices or keys to access them. They can only contain values of immutable data types like numbers, strings, and tuples. And they support mathematical set operations, including union, intersection, difference, and symmetric difference.
+
+
+Example Code -
+
+my_set = {1, 2, 3, 4, 5} 
+
+-------------------------
+
+set() Function
+--------------
+
+thisset = set(("apple", "banana", "cherry")) # note the double round-brackets
+print(thisset)
+
+One quirk of working with sets is that, if you ever need to define an empty set, you must use the set() function. If you just write empty curly braces, like {}, Python will automatically create a dictionary.
+
+Example Code -
+
+my_set.add(6)
+
+#{1, 2, 3, 4, 5, 6}
+
+-> If you try to add an element that is already in the set, only one will be kept. In this case, we already have the number 5 in the set:
+
+my_set.add(5)
+
+#{1, 2, 3, 4, 5, 6}
+
+---------------------------
+
+.remove() method
+------------------
+
+fruits = {"apple", "banana", "cherry"}
+
+fruits.remove("banana") 
+
+print(fruits)
+
+#{'apple', 'cherry'}
+
+-> If you have not remove item, you will get KeyError
+
+---------------------------
+
+.discard() method
+-------------------
+
+fruits = {"apple", "banana", "cherry"}
+
+fruits.discard("banana")
+
+print(fruits)
+
+#{'apple', 'cherry'}
+
+-> This method is different from the remove() method, because the remove() method will raise an error if the specified item does not exist, and the discard() method will not.
+
+--------------------------
+
+.pop() method
+-------------
+
+thisset = {"apple", "banana", "cherry"}
+
+thisset.discard("banana")
+
+print(thisset)
+
+#{'apple', 'cherry'}
+
+---------------------------
+
+.clear() method
+---------------
+
+The .clear() method removes all the elements from the set:
+
+my_set.clear()
+
+---------------------------
+
+Note: The values True and 1 are considered the same value in sets, and are treated as duplicates:
+
+thisset = {"apple", "banana", "cherry", True, 1, 2}
+
+print(thisset)
+
+#{True, 2, 'banana', 'cherry', 'apple'}
+
+Note: The values False and 0 are considered the same value in sets, and are treated as duplicates:
+
+thisset = {"apple", "banana", "cherry", False, True, 0}
+
+print(thisset)
+
+#{False, True, 'cherry', 'apple', 'banana'}
+
+-----------------------------
+
+len() Function 
+--------------
+
+thisset = {"apple", "banana", "cherry"}
+
+print(len(thisset))
+
+#3
+------------------------------
+
+subset() and superset()
+-----------------------
+
+A subset is a set whose elements are all contained within another set, while a superset is that "other" set which contains all the elements of the first set. They are two sides of the same coin: if A is a subset of B, then B is automatically a superset of A. 
+
+Subset (⊆): Set A is a subset of B if every member of A is also in B.
+Example: {1, 2} is a subset of {1, 2, 3}.
+
+Superset (⊇): Set B is a superset of A if it includes everything in A.
+Example: {1, 2, 3} is a superset of {1, 2}.
+
+Proper Subset (⊂): A subset that is not equal to the original set.
+Example: {1, 2} is a proper subset of {1, 2, 3}, but {1, 2, 3} is not a proper subset of itself. 
+
+
+my_set = {1, 2, 3, 4, 5}
+your_set = {2, 3, 4, 6}
+
+print(your_set.issubset(my_set)) # False
+print(my_set.issuperset(your_set)) # False
+
+---------------------------------
+
+isdisjoint()
+------------
+
+The .isdisjoint() method checks if two sets are disjoint, which means they don't have any elements in common. In this case, that's False because my_set and your_set do have common elements – 2, 3, and 4:
+
+print(my_set.isdisjoint(your_set)) # False
+
+--------------------------------
+
+|, &, -, ^ 
+-----------
+
+The union operator | returns a new set with all the elements from both sets:
+
+my_set | your_set # {1, 2, 3, 4, 5, 6}
+
+The intersection operator & returns a new set with only the elements that the sets have in common:
+
+my_set & your_set # {2, 3, 4}
+
+The difference operator - returns a new set with the elements of the first set that are not in the other sets. In this example, the numbers 1 and 5 are in my_set but NOT in your_set:
+
+my_set - your_set # {1, 5}
+
+The symmetric difference operator ^ returns a new set with the elements that are either in the first or the second set, but not both. In this case, 1 and 5 are in my_set but not in your_set, so they are included. And the number 6 is in your_set but not in my_set, so it's included as well:
+
+my_set ^ your_set # {1, 5, 6}
+
+With Assignment Operator
+------------------------
+
+|= &= -= ^=
+
+For example, the -= operator finds the difference between the sets and updates the first set with that result:
+
+my_set -= your_set
+
+After this, my_set will be updated to {1, 5}:
+
+print(my_set) # {1, 5}
+
+-----------------------------------
+
+in operator
+-----------
+
+print(5 in my_set) #True
+
+----------------------------------------------------------------
+
+
+
+
+}
 {}
 
