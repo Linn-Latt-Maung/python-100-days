@@ -139,7 +139,6 @@ print(my_str[6])  # w
 print(my_str[-1])  # d
 print(my_str[-2]) # l
 
-
 -> Python doesn't draw a hard line between those two groups. Instead, all data gets treated as objects, and some objects are immutable while others are mutable. Immutable data types can't be modified or altered once they're declared. You can point their variables at something new, which is called reassignment, but you can't change the original object itself by adding, removing, or replacing any of its elements.
 
 	Strings are immutable data types in Python. This means that you can reassign a different string to a variable:
