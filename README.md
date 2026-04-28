@@ -91,7 +91,6 @@ my_str_4 = '''Another
 multiline
 string'''
 
-
 -> If your string contains either single or double quotation marks, then you have two options -
 
 -->   Use the opposite kind of quotes. That is, if your string contains single quotes, use double quotes to wrap the string, and vice versa:
