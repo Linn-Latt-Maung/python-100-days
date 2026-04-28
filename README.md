@@ -204,6 +204,7 @@ name_and_age += str(age)  # Append the age as string
 print(name_and_age)  # John Doe26
 
 
+
 -> string interpolation (F-string with {})
 
 Example Code
