@@ -2408,16 +2408,155 @@ print(5 in my_set) #True
 
 ----------------------------------------------------------------
 
-What is the Python Standard Library, and How Do you Import a Module? (Working with Modules)
---------------------------------------------------------------------------
 
 
 }
+
+
+
 {
+
+
+Date - 4/29/2026
+================
+
+
 What is the Python Standard Library, and How Do you Import a Module? (Working with Modules)
---------------------------------------------------------------------------
-What is the Python Standard Library, and How Do you Import a Module? (Working with Modules)
---------------------------------------------------------------------------
+---------------------------------------------------------------------
+
+In software development, a library is like a toolbox for developers.
+
+Instead of having to implement every single part of the code yourself from scratch, a library gives you pre-written and reusable code, like functions, classes, and data structures that you can use in your projects.
+
+Python has an extensive standard library with many different built-in modules. They're all standardized, well-vetted solutions for many of the problems and tasks you'll face daily as a programmer, such as:
+
+ Interacting with the operating system.
+ Working with files.
+ Networking.
+ Working with date and time.
+ Performing mathematical operations.
+ Using regular expressions.
+ Testing and debugging your code.
+ And much more!
+
+Syntax
+
+import module_name
+
+Example Code - 
+
+import math 
+
+-----------------
+Syntax
+
+module_name.function_name() 
+
+Example Code -
+
+math.sqrt(36)
+
+-----------------
+
+Using Alias 
+-----------
+
+Syntax
+
+import module_name as module_alias
+
+Example Code -
+
+import math as m 
+
+m.sqrt(36)
+
+-------------------
+
+Now the import statement starts with from, followed by the name of the module, and then the import keyword followed by the name of the elements that you want to import:
+
+Syntax
+
+from module_name import name1, name2
+
+Syntax - If with alias
+
+from module_name import name1 as alias1, name2 as alias2
+
+
+Example Code - 
+
+from math import radians, sin, cos
+
+angle_degrees = 40
+angle_radians = radians(angle_degrees)
+
+sine_value = sin(angle_radians)
+cos_value = cos(angle_radians)
+
+print(sine_value) # 0.6427876096865393
+print(cos_value)  # 0.766044443118978
+
+--------------------------------
+
+If you want to call any function defined in that module, you can use (*).
+
+Syntax
+
+from module_name import *
+
+Example Code -
+
+from math import *
+print(sqrt(36))  # 6.0
+print(pow(5, 2)) # 25.0
+print(exp(1))    # 2.718281828459045
+
+---------------------------------
+
+If you want to use number of (pi)
+
+Example Code
+
+import math
+print(math.pi)
+
+---------------------------------
+
+If you want to use (datetime) 
+
+Example Code
+
+import datetime
+birthday = datetime.date(1959, 7, 15)
+print(birthday.day)    # 15
+print(birthday.month)  # 7
+print(birthday.year)   # 1959
+
+---------------------------------
+
+__name__
+--------
+
+if __name__ == '__main__': 
+    # Code
+__name__ is a special built-in variable in Python.
+
+When a Python file is executed directly, Python sets the value of this variable to the string "__main__".
+
+But if the Python file is imported as a module into another Python script, the value of the __name__ variable is set to the name of that module (usually the filename without the .py extension).
+
+This is why you'll often find this conditional in Python scripts. It contains the code that you want to run only if the Python script is running as the main program:
+ 
+if __name__ == '__main__': 
+    # Code
+
+But if the script is imported as a module, the code within that block doesn't run.
+
+This is helpful because it allows Python scripts to have two purposes. They can be run directly to execute their main logic, or they can be imported into another module without executing their main logic.
+
+
+
 }
 
 {}
