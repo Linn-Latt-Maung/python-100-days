@@ -2781,6 +2781,41 @@ In this example, we're raising a ValueError with a custom message when an invali
 
 The raise statement can also be used to re-raise the current exception, which is particularly useful in exception handling:
 
+def process_data(data):
+    try:
+        result = int(data)
+        return result * 2
+    except ValueError:
+        print('Logging: Invalid data received')
+        raise  # Re-raises the same ValueError
+
+try:
+    process_data('abc')
+except ValueError:
+    print('Handled at higher level')
+
+Here the keyword raise (without arguments), re-raises the current exception that's being handled.
+
+This allows you to log or perform cleanup while still propagating the error up the call stack.
+
+You can create and raise custom exceptions by defining your own exception classes:
+
+class InsufficientFundsError(Exception):
+    def __init__(self, balance, amount):
+        self.balance = balance
+        self.amount = amount
+        super().__init__(f'Insufficient funds: ${balance} available, ${amount} requested')
+
+def withdraw(balance, amount):
+    if amount > balance:
+        raise InsufficientFundsError(balance, amount)
+    return balance - amount
+
+try:
+    new_balance = withdraw(100, 150)
+except InsufficientFundsError as e:
+    print(f'Transaction failed: {e}')
+
 
 
 
