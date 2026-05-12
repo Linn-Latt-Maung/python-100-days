@@ -2750,7 +2750,41 @@ Error Path: try -> except -> finally
 }
 
 
-{}
+{
+
+
+Date - 5/12/2026
+================
+
+What Is the Raise Statement and How Does It Work? (Understanding Error Handling)
+-------------------------------------------------
+
+In Python, the raise statement is a powerful tool that allows you to manually trigger exceptions in your code. It gives you control over when and how errors are generated, enabling you to create custom error conditions and enforce specific program behavior.
+
+The raise statement is used to explicitly throw an exception at any point in your program, allowing you to signal that an error condition has occurred or that certain requirements haven't been met.
+
+Python's raise statement can be used in several ways to trigger exceptions. At its most basic, you can raise built-in exceptions or create custom error messages. Here's a simple example:
+
+def check_age(age):
+    if age < 0:
+        raise ValueError('Age cannot be negative')
+    return age
+
+try:
+    check_age(-5)
+except ValueError as e:
+    print(f'Error: {e}') # Error: Age cannot be negative
+
+You can see here that raise is the keyword that triggers an exception.
+
+In this example, we're raising a ValueError with a custom message when an invalid age is provided.
+
+The raise statement can also be used to re-raise the current exception, which is particularly useful in exception handling:
+
+
+
+
+}
 
 
 {}
