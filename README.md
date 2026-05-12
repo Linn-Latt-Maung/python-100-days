@@ -2816,6 +2816,52 @@ try:
 except InsufficientFundsError as e:
     print(f'Transaction failed: {e}')
 
+Here you can see custom exception classes inherit from Exception or its subclasses.
+
+You'll learn more about classes and inheritance in future lessons. For now, know that this is a way to create your own exceptions with custom logic.
+
+The raise statement can also be used with the from keyword to chain exceptions, showing the relationship between different errors:
+
+def parse_config(filename):
+    try:
+        with open(filename, 'r') as file:
+            data = file.read()
+            return int(data)
+    except FileNotFoundError:
+        raise ValueError('Configuration file is missing') from None
+    except ValueError as e:
+        raise ValueError('Invalid configuration format') from e
+
+config = parse_config('config.txt')
+
+Here you can see that raise ... from None, suppresses the original exception context:
+
+Traceback (most recent call last):
+  File "main.py", line 12, in <module>
+    config = parse_config('config.txt')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "main.py", line 7, in parse_config
+    raise ValueError('Configuration file is missing') from None
+ValueError: Configuration file is missing
+
+And raise ... from e, chains the new exception to the original one, preserving the error trail.
+
+Traceback (most recent call last):
+  File "main.py", line 5, in parse_config
+    return int(data)
+           ^^^^^^^^^
+ValueError: invalid literal for int() with base 10: ''
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "main.py", line 12, in <module>
+    config = parse_config('config.txt')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "main.py", line 9, in parse_config
+    raise ValueError('Invalid configuration format') from e
+ValueError: Invalid configuration format
+
 
 
 
