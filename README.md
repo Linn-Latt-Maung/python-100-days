@@ -2862,7 +2862,18 @@ Traceback (most recent call last):
     raise ValueError('Invalid configuration format') from e
 ValueError: Invalid configuration format
 
+You can also raise exceptions conditionally using assert statements, which are essentially shorthand for raise with AssertionError:
 
+def calculate_square_root(number):
+    assert number >= 0, 'Cannot calculate square root of negative number'
+    return number ** 0.5
+
+try:
+    result = calculate_square_root(-4)
+except AssertionError as e:
+    print(f'Assertion failed: {e}')
+
+The raise statement is essential for creating robust applications where you need to enforce business rules, validate input, and provide meaningful error messages. By strategically using raise, you can make your code more predictable and easier to debug, while giving users clear feedback about what went wrong.
 
 
 }
