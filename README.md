@@ -2879,7 +2879,16 @@ The raise statement is essential for creating robust applications where you need
 }
 
 
-{}
+{
+
+
+
+Date - 5/13/2026
+================
+
+Error Handling Lab
+
+}
 
 
 {}
