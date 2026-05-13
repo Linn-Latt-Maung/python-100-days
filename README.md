@@ -2888,6 +2888,62 @@ Date - 5/13/2026
 
 Error Handling Lab
 
+--------------------------
+
+
+How Do Classes Work and How Do They Differ From Objects? (Classes and Objects)
+--------------------------------------------------------
+
+
+1. Class (Blueprint/Template)
+-----------------------------
+
+A Class is a "instruction manual" or "template" that predefines what data and behaviors an object should have.
+
+* You start writing a class using the `class` keyword.
+* It bundles variables (attributes) and functions (methods) together.
+* Example: In a class named "Dog," you might define that every dog must have a name and an age.
+
+2. Object (The Instance/The Real Thing)
+---------------------------------------
+
+An Object is the actual "entity" built using the Class template.
+
+* You can create multiple objects with different data from a single class.
+* Every object has its own dedicated memory space.
+* Example: From the "Dog" class, you can create two objects: `dog_1` with the name "Jack" and `dog_2` with the name "Thatcher."
+
+3. Method (Actions/Functions)
+-----------------------------
+
+A Method refers to the "functions" defined within a class using the `def` keyword.
+
+* These methods are called through the object to perform specific tasks.
+* The first parameter of a method must always be `self`.
+* `self` represents and points back to the specific object currently being used.
+* Example: A method called `bark()` is the action that tells the dog object to bark.
+
+4. Detailed Limitations of OOP
+-----------------------------
+
+While using Classes and Objects is very beneficial, there can be difficulties in certain situations:
+
+* A. Complexity: Even for a simple task, having to write many Classes, Objects, and `__init__` methods can make the code longer and harder to understand. For small programs, writing simple functions without classes is often faster.
+* B. Memory Overhead: Every object requires its own unique memory space. If you need to create millions of objects, it can consume a lot of memory.
+* C. Requirement for Upfront Planning: You must carefully consider how classes will communicate with each other before writing them. If the initial blueprint (design) is wrong, it is very difficult to refactor the entire codebase later.
+* D. Execution Speed: Writing in an Object-Oriented style can be slightly slower in Python compared to using simple logic. This is because every time a method is called, Python must look it up within the object's memory.
+
+---
+
+Summary Comparison
+
+| Section   | Role      | Example			                |
+| ---       | ---       | ---                               |
+| **Class** | Blueprint | Robot construction manual 	    |
+| **Object**| Instance  | An actual robot in the real world |
+| **Method**| Action    | Robot walking or speaking 	    |
+
+
 }
 
 
