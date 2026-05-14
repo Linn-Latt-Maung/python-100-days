@@ -3109,6 +3109,74 @@ Why use them? (The Theory)
 2.	Consistency: It allows developers to use standard Python functions like len() or in on any object, regardless of who created the class.
 3.	Integration: It bridges the gap between your custom logic and the Python interpreter, making your classes feel like "first-class citizens" of the language.
 
+-----------------------------------------------------------------------------------------------
+
+
+How to Handle Object Attributes Dynamically? (Classes and Objects)
+--------------------------------------------
+
+Dynamic attribute handling is like having a "remote control" for your object. Normally, you use a "fixed wire" (like my_car.brand) to talk to an object. But sometimes, you don't know which wire to pull until the program is running—maybe because a user is typing a command or a settings file is being read.
+
+Python provides four built-in functions that let you work with attributes using variable names (strings) instead of hardcoded names.
+
+
+1. getattr() — The "Read" Button
+--------------------------------
+
+Purpose: Fetches the value of an attribute using a string name.
+
+•	Why use it? When the attribute name is stored in a variable (like from input()).
+•	Safety: You can provide a "default value" so the program doesn't crash if the attribute is missing.
+
+
+# Example: Getting data based on user input
+
+attr_to_see = input("Enter 'name' or 'age': ") # User types 'age'
+print(getattr(person, attr_to_see, "Not found")) # Output: 30
+
+
+2. setattr() — The "Write/Create" Button
+----------------------------------------
+
+Purpose: Updates an existing attribute or creates a brand-new one on the fly.
+
+•	Why use it? Perfect for loading settings from a dictionary or a configuration file into an object.
+
+
+# Example: Converting a dictionary into object attributes
+
+settings = {'theme': 'dark', 'font': 'Arial'}
+for key, value in settings.items():
+    setattr(config_obj, key, value) # Creates config_obj.theme and config_obj.font
+
+3. hasattr() — The "Check" Button
+---------------------------------
+
+Purpose: Checks if an attribute exists and returns True or False.
+
+•	Why use it? To prevent errors. You check if the "wire" exists before you try to pull it with getattr() or delete it with delattr().
+
+
+# Example: Validation
+
+if not hasattr(product, 'price'):
+    print("Error: This product has no price!")
+
+4. delattr() — The "Delete" Button
+----------------------------------
+
+Purpose: Permanently removes an attribute from an object.
+
+•	Why use it? Cleanup. You might want to remove temporary data or sensitive information (like a password token) before saving the object.
+
+
+# Example: Deletation
+
+# if we want to delete token after used
+delattr(session, 'auth_token')
+
+
+
 
 
 }
