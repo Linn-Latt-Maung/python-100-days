@@ -3182,4 +3182,57 @@ delattr(session, 'auth_token')
 }
 
 
+
+
+{
+
+
+
+Date - 5/15/2026
+================
+
+- a Musical Instrument Inventory (workshop)
+- a Planet Class (Lab)
+- an Email Simulator (workshop)
+- review and quiz of Classes and Objects
+
+
+}
+
+
+
+
+
+
+
+
+
+
+{}
+
+
+
+
+{}
+
+
+
+
+{}
+
+
+
+
+
+{}
+
+
+
+
+
+{}
+
+
+
+
 {}
