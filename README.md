@@ -3202,14 +3202,27 @@ Date - 5/15/2026
 
 
 
+{
+
+
+Date - 5/16/2026
+================
+
+- Build a Budget App (Certification Project)
+
+}
 
 
 
 
+{
 
+Date - 5/17/2026
+================
 
-{}
+- 5th_Extra_3D_Rocket_Simulator.py (Extra Project)
 
+}
 
 
 
