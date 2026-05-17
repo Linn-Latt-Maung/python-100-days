@@ -1,30 +1,25 @@
+import time
+
 class Rocket:
     def __init__(self, name):
-        # Initializing the rocket's name and its starting point in 3D Space
         self.name = name
         self.x = 0
         self.y = 0
-        self.z = 0  # Z represents Altitude (Up/Down)
+        self.z = 0  # Z is Altitude
         self.fuel = 100
         self.telemetry_log = []
 
     def move(self, dx, dy, dz):
-        # 1. Guard Logic: Stop execution if there is no fuel left
         if self.fuel <= 0:
             print(f"⚠️ {self.name} has no fuel left! Action denied.")
             return False
         
-        # 2. Movement Logic: Add the delta changes to current coordinates
         self.x += dx
         self.y += dy
         self.z += dz
-        
-        # 3. Consumption Logic: Burn 10 units of fuel per maneuver
         self.fuel -= 10
-        if self.fuel < 0:
-            self.fuel = 0 # Prevent negative fuel percentages
+        if self.fuel < 0: self.fuel = 0
         
-        # 4. Logging Logic: Save a snapshot of this position into the recorder
         self.telemetry_log.append({
             "action": "Moved", 
             "position": (self.x, self.y, self.z)
@@ -32,7 +27,6 @@ class Rocket:
         return True
 
     def refuel(self):
-        # Reset fuel capacity back to max
         self.fuel = 100
         self.telemetry_log.append({
             "action": "Refueled", 
@@ -40,51 +34,78 @@ class Rocket:
         })
         print(f"⛽ {self.name} has been successfully refueled.")
 
-    def print_log(self):
-        # 5. Loop Logic: Iterate and unpack our dictionary records gracefully
-        print(f"\n--- Flight Data Recorder: {self.name} ---")
-        for index, log in enumerate(self.telemetry_log, start=1):
-            action = log["action"]
-            pos = log["position"]
-            print(f"Step {index}: [{action}] -> Current Vector Position: {pos}")
+    # ==========================================
+    #        🆕 NEW: LANDING SIMULATION
+    # ==========================================
+    def landing_simulation(self):
+        print(f"\n{" PRE-LANDING SEQUENCE STARTED ":=^50}")
+        print(f"Initiating descent protocol for {self.name}...")
+        
+        # Set a starting high altitude if the rocket is currently on the ground
+        if self.z <= 0:
+            self.z = 100 
+            
+        velocity = 0  # Speed of descent
+        gravity = 5   # Constant pull downwards
+        
+        print(f"Starting Altitude: {self.z}m | Current Fuel: {self.fuel}%")
+        print("-" * 50)
+        
+        # The game loop runs while the rocket is still in the air
+        while self.z > 0:
+            # 1. Apply gravity to velocity, and update altitude
+            velocity += gravity
+            self.z -= velocity
+            
+            # If the calculation drops below 0, clip it to 0 (the ground)
+            if self.z < 0: 
+                self.z = 0
+                
+            print(f"Altitude: {self.z:>3}m | Descent Speed: {velocity:>2} m/s | Fuel: {self.fuel}%")
+            
+            # If still in the air, let the player choose to burn fuel
+            if self.z > 0:
+                if self.fuel >= 10:
+                    choice = input("Press [B] to burn thrusters (Slows descent) or Enter to coast: ").strip().lower()
+                    if choice == 'b':
+                        self.fuel -= 10
+                        velocity -= 15 # Counteract gravity with engine thrust
+                        print("🔥 Thrusters Fired! Speed reduced.")
+                else:
+                    print("⚠️ OUT OF FUEL! Free falling...")
+                    time.sleep(0.5) # Adds a dramatic delay to the text game
+                    
+        # 2. Check Win/Loss conditions when hitting the ground (Z = 0)
+        print("-" * 50)
+        print("🚨 TOUCHDOWN! Analyzing impact telemetry...")
+        time.sleep(1)
+        
+        if velocity <= 10:
+            print(f"🎉 SUCCESS! {self.name} has landed smoothly. The crew is safe!")
+            self.telemetry_log.append({"action": "Safe Landing", "position": (self.x, self.y, self.z)})
+        else:
+            print(f"💥 CRASH! {self.name} hit the surface too fast at {velocity} m/s.")
+            print("The rocket exploded on impact.")
+            self.telemetry_log.append({"action": "Crashed on Landing", "position": (self.x, self.y, self.z)})
+            
+        print("=" * 50)
 
     def __str__(self):
-        # 6. Formatting Logic: Building a clean text dashboard using alignment mechanics
         title = f"{self.name:=^30}\n"
         coordinates = f"Position Vector : X: {self.x}, Y: {self.y}, Z: {self.z}\n"
         fuel_status = f"Fuel Capacity   : {self.fuel}%\n"
         border = "=" * 30
         return title + coordinates + fuel_status + border
 
-
 # ==========================================
 #               TEST BENCH
 # ==========================================
+# Create the rocket
+falcon = Rocket("Falcon 9")
 
-# Step 1: Initialize our virtual object instance
-apollo = Rocket("Apollo 11")
-print("--- Initial State ---")
-print(apollo)
+# Give it some initial movements to use up a bit of fuel
+falcon.move(0, 0, 150) 
+falcon.move(0, 0, 200)
 
-# Step 2: Simulate dynamic spatial changes (moving the object)
-print("\n--- Executing Flight Plan ---")
-apollo.move(10, 5, 80)     # Launch phase: blasting high into the Z-axis
-apollo.move(5, -2, 120)    # Orbit adjustment
-apollo.move(0, 15, -10)    # Forward cruise
-print(apollo)
-
-# Step 3: Run dry out of fuel to test guard defenses
-print("\n--- Testing Fuel Depletion Guard ---")
-for i in range(8): 
-    apollo.move(1, 1, 1)   # Burn the remaining fuel cycles
-
-print(apollo)
-apollo.move(5, 5, 5)       # This movement attempt should get blocked safely!
-
-# Step 4: Maintenance operations
-print("\n--- Ground Control Command ---")
-apollo.refuel()
-print(apollo)
-
-# Step 5: Read structural history logs
-apollo.print_log()
+# Start the interactive landing mini-game!
+falcon.landing_simulation()
