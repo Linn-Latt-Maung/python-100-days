@@ -3428,9 +3428,9 @@ Conclusion
 
 Getters and setters packaged via Properties allow you to write bulletproof, heavily encapsulated classes without sacrificing clean, readable, and professional code syntax!
 
+---------------------------------------------------------------------------------------------
 
-
-
+-> 9th_exe_build_a_salary_tracker.py (workshop)
 
 }
 
