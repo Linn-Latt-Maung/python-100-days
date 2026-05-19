@@ -3339,6 +3339,98 @@ Before creating a variable, ask yourself:
 Date - 5/19/2026
 ================
 
+What are Getters and Setters (Understanding object oriented programming and Encapsulation)
+----------------------------
+
+1. The Core Problem: Methods vs. Attributes
+-------------------------------------------
+In traditional Object-Oriented Programming, when we encapsulate data (making it private using _ or __), we use methods to access or change it:
+
+example code
+
+# Traditional method syntax (Cluttered)
+
+current_radius = my_circle.get_radius()  # Requires parenthesis ()
+my_circle.set_radius(5)                  # Requires parenthesis ()
+
+However, calling methods with parenthesis constantly makes your game loop code look messy and less readable. We want the simplicity of accessing a clean attribute (circle.radius = 5), but with the security of a method running validation logic behind the scenes.
+Key Definition: A Property is a special class feature that looks and acts like a normal attribute on the outside, but triggers an underlying method loop on the inside.
+
+--------------------------------------------------------
+
+2. The @property Decorator (Getters)
+------------------------------------
+
+In Python, a decorator (marked by the @ symbol) modifies the functionality of a function without changing its original source code. The @property decorator turns a standard method into a Getter Property.
+
+Rule of Thumb for Getters:
+•	Use a getter to safely read a private variable or compute a variable on-the-fly (like calculating area dynamically).
+•	Once a method is decorated with @property, you must not use parenthesis () to call it from outside the class.
+
+example code
+
+class Circle:
+    def __init__(self, radius):
+        self._radius = radius # Private by convention
+
+    @property
+    def radius(self): # The Getter Doorway
+        return self._radius
+
+my_circle = Circle(5)
+print(my_circle.radius) # Output: 5 (No parenthesis used!)
+
+
+------------------------------------------------
+
+3. The Property Setter (@<name>.setter)
+---------------------------------------
+
+To allow outside code to change your protected variable, you create a second method with the exact same name and decorate it with @<property_name>.setter.
+
+Rule of Thumb for Setters:
+•	Use a setter to act as a Validation Guard. It intercepts any assignment using the equals sign (=) and verifies the input value is safe before updating the data.
+
+example code
+
+    @radius.setter
+    def radius(self, value): # The Setter Doorway
+        if value <= 0:
+            raise ValueError('Radius must be positive!') # Prevents a crash
+        self._radius = value # Saves safely to internal storage
+
+Critical Warning: Infinite Recursion Danger
+
+Inside the setter block, you must always assign to the underscored variable name (self._radius = value).
+If you accidentally omit the underscore and type self.radius = value, Python will call the setter from inside the setter itself. This creates a loop that repeats until your computer runs out of memory and crashes with a RecursionError.
+
+-------------------------------------------------
+
+4. The Property Deleter (@<name>.deleter)
+-----------------------------------------
+
+A deleter runs custom cleanup logic whenever an attribute is stripped from an object using Python's built-in del statement.
+
+Rule of Thumb for Deleters:
+•	Use a deleter to manage hardware memory or clear log records safely when an item is permanently destroyed or dropped from an inventory array.
+
+example code
+
+    @radius.deleter
+    def radius(self):
+        print("Safely deleting radius attribute from memory...")
+        del self._radius
+
+---------------------------------------------
+
+Conclusion
+----------
+
+Getters and setters packaged via Properties allow you to write bulletproof, heavily encapsulated classes without sacrificing clean, readable, and professional code syntax!
+
+
+
+
 
 }
 
