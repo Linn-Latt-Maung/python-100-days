@@ -3438,7 +3438,18 @@ Getters and setters packaged via Properties allow you to write bulletproof, heav
 
 
 
-{}
+{
+
+
+
+Date - 4/20/2026
+================
+
+-> 8th_lab_build_a_game_character_stats_tracker.py (lab)
+-> 
+
+
+}
 
 
 
